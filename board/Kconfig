@@ -9,6 +9,13 @@ config SOC_STM32F103VE
 
 menu "Onboard Peripheral Drivers"
 
+    config BSP_USING_KEY
+        bool "Enable onboard keys"
+        default n
+        select RT_USING_PIN
+        select RT_USING_TIMER_SOFT
+        select PKG_USING_FLEXIBLE_BUTTON
+
 endmenu
 
 menu "On-chip Peripheral Drivers"
