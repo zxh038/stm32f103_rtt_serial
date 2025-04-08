@@ -27,6 +27,10 @@ endmenu
 
 menu "On-chip Peripheral Drivers"
 
+    config BSP_USING_ON_CHIP_FLASH
+        bool "Enable on-chip FLASH"
+        default n
+        
     config BSP_USING_GPIO
         bool "Enable GPIO"
         select RT_USING_PIN
