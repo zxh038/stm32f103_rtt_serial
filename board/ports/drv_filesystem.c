@@ -5,6 +5,8 @@
 #include <dfs_romfs.h>
 #include <dfs_ramfs.h>
 
+#ifdef RT_USING_DFS
+
 const char text[] = "Hello, RT-Thread!";
 
 const struct romfs_dirent children_dir[] = {
@@ -51,3 +53,5 @@ int initFileSystem(void)
     return 0;
 }
 INIT_ENV_EXPORT(initFileSystem);
+
+#endif
