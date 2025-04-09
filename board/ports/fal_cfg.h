@@ -21,18 +21,18 @@ extern struct fal_flash_dev nor_flash0;
 #define FAL_FLASH_DEV_TABLE                                          \
 {                                                                    \
     &stm32_onchip_flash,                                             \
-    &nor_flash0,                                                      \
+    &nor_flash0,                                                     \
 }
 /* ====================== Partition Configuration ========================== */
 #ifdef FAL_PART_HAS_TABLE_CFG
 
 /* partition table */
-#define FAL_PART_TABLE                                                          \
-{                                                                               \
-    {FAL_PART_MAGIC_WORD,   "app", "onchip_flash",        0,  496*1024, 0},     \
-    {FAL_PART_MAGIC_WORD, "param", "onchip_flash", 496*1024,  16*1024,  0},     \
-    {FAL_PART_MAGIC_WORD,     "c",    "norflash0",        0,   4*1024,  0},     \
-    {FAL_PART_MAGIC_WORD,     "d",    "norflash0",   4*1024,   4*1024,  0},     \
+#define FAL_PART_TABLE                                                                          \
+{                                                                                               \
+    {FAL_PART_MAGIC_WORD,        "app", "onchip_flash",             0,       496*1024, 0},      \
+    {FAL_PART_MAGIC_WORD,      "param", "onchip_flash",      496*1024,        16*1024, 0},      \
+    {FAL_PART_MAGIC_WORD,       "font",    "norflash0",             0,    6*1024*1024, 0},      \
+    {FAL_PART_MAGIC_WORD, "filesystem",    "norflash0",   6*1024*1024,    2*1024*1024, 0},      \
 }
 #endif /* FAL_PART_HAS_TABLE_CFG */
 #endif /* _FAL_CFG_H_ */

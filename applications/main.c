@@ -11,15 +11,41 @@
 #include <rtthread.h>
 #include <rtdevice.h>
 #include <board.h>
+
 #include <fal.h>
+#include <dfs_fs.h>
+#include <rtdbg.h>
 
 /* defined the LED0 pin: PB1 */
 #define LED0_PIN    GET_PIN(B, 1)
+#define FS_PARTITION_NAME   "filesystem"
 
 int main(void)
 {
 	fal_init();
 	
+    /* 在 spi flash 中名为 "filesystem" 的分区上创建一个块设备 */
+    struct rt_device *flash_dev = fal_blk_device_create(FS_PARTITION_NAME);
+    if (flash_dev == NULL)
+    {
+        LOG_E("Can't create a block device on '%s' partition.", FS_PARTITION_NAME);
+    }
+    else
+    {
+        LOG_D("Create a block device on the %s partition of flash successful.", FS_PARTITION_NAME);
+    }
+
+    /* 挂载 spi flash 中名为 "filesystem" 的分区上的文件系统 */
+    if (dfs_mount(flash_dev->parent.name, "/", "elm", 0, 0) == 0)
+    {
+        LOG_I("Filesystem initialized!");
+    }
+    else
+    {
+        LOG_E("Failed to initialize filesystem!");
+        LOG_D("You should create a filesystem on the block device first!");
+    }
+
     int count = 1;
     /* set LED0 pin mode to output */
     rt_pin_mode(LED0_PIN, PIN_MODE_OUTPUT);

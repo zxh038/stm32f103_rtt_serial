@@ -2,10 +2,10 @@
 #include <rtdbg.h>
 #include <dfs.h>
 #include <dfs_fs.h>
-#include <dfs_romfs.h>
-#include <dfs_ramfs.h>
+// #include <dfs_romfs.h>
+// #include <dfs_ramfs.h>
 
-#ifdef RT_USING_DFS
+#if 0//def RT_USING_DFS
 
 const char text[] = "Hello, RT-Thread!";
 
